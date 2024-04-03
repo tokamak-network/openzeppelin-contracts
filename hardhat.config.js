@@ -11,17 +11,22 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-require("@nomiclabs/hardhat-etherscan");
-require("dotenv").config();
+require('@nomiclabs/hardhat-etherscan');
+require('dotenv').config();
 
 module.exports = {
-  solidity: "0.7.4",
+  solidity: '0.7.4',
   networks: {
     thanossepolia: {
-      url: `https://rpc.thanos-sepolia-test.tokamak.network`,
+      url: 'https://rpc.thanos-sepolia-test.tokamak.network',
       accounts: [`${process.env.PRIVATE_KEY}`],
-      chainId: 111551118080
-    }
+      chainId: 111551118080,
+    },
+    titansepolia: {
+      url: 'https://rpc.titan-sepolia.tokamak.network',
+      accounts: [`${process.env.PRIVATE_KEY}`],
+      chainId: 55007,
+    },
   },
   etherscan: {
     // Your API key for Etherscan
@@ -29,13 +34,21 @@ module.exports = {
     apiKey: process.env.ETHERSCAN_API_KEY,
     customChains: [
       {
-        network: "thanossepolia",
+        network: 'thanossepolia',
         chainId: 111551118080,
         urls: {
-          apiURL: "https://explorer.thanos-sepolia-test.tokamak.network/api",
-          browserURL: "https://explorer.thanos-sepolia-test.tokamak.network/"
-        }
-      }
-    ]
-  }
+          apiURL: 'https://explorer.thanos-sepolia-test.tokamak.network/api',
+          browserURL: 'https://explorer.thanos-sepolia-test.tokamak.network/',
+        },
+      },
+      {
+        network: 'titansepolia',
+        chainId: 55007,
+        urls: {
+          apiURL: 'https://explorer.titan-sepolia.tokamak.network/api',
+          browserURL: 'https://explorer.titan-sepolia.tokamak.network/',
+        },
+      },
+    ],
+  },
 };
